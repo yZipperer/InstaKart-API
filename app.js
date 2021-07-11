@@ -2,10 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
+const fs = require('fs');
 
-dotenv.config()
-const app = express()
+dotenv.config();
+const app = express();
 
 mongoose.connect(process.env.MURI, {
     useNewUrlParser: true,
@@ -20,10 +21,8 @@ app.use(bodyParser.json({limit: "2mb"}));
 app.use(cors());
 
 //routes
-app.get('/', (req, res) => {
-    res.json({
-        data: "hello world"
-    });
+fs.readdirSync('./routes').map((routes) => {
+    app.use("/", require(`./routes/${routes}`));
 });
 
 const port = process.env.PORT || 8080;
