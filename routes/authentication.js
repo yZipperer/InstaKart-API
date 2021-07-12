@@ -1,9 +1,8 @@
 const express = require('express');
+const {cUser} = require('../controllers/authentication');
 
 const router = express.Router();
 
-router.get("/auth", (req, res) => {
-    res.send("hello world");
-});
+router.get("/auth", cUser);
 
 module.exports = router;
