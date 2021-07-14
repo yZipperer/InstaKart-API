@@ -1,6 +1,14 @@
 const admin = require('../firebase');
 
-exports.authenticationCheck = (req, res, next) => {
-    console.log(req.headers);
+exports.authenticationCheck = async (req, res, next) => {
+    try{
+        const fUser = await admin.auth().verifyIdToken(req.headers.authenticationtoken);
+        req.user = fUser;
+    } catch (err) {
+        console.log(err);
+        res.status(401).json({
+            err: "Invalid or expired token"
+        });
+    }
     next();
 };
