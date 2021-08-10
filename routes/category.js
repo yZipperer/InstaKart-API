@@ -1,0 +1,14 @@
+const express = require('express');
+const {createCategory, readCategory, updateCategory, removeCategory, listCategories} = require('../controllers/category');
+
+const router = express.Router();
+
+const {authenticationCheck, adminCheck} = require('../middleware/authentication');
+
+router.post("/category", authenticationCheck, adminCheck, createCategory);
+router.get("/category/:slug", authenticationCheck, adminCheck, readCategory);
+router.put("/category/:slug", authenticationCheck, adminCheck, updateCategory);
+router.delete("/category/:slug", authenticationCheck, adminCheck, removeCategory);
+router.get("/categories", listCategories);
+
+module.exports = router;
