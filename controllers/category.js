@@ -12,17 +12,33 @@ exports.createCategory = async (req, res) => {
 };
 
 exports.readCategory = async (req, res) => {
-
+    const {slug} = req.params;
+    const category = await Category.findOne({slug}).exec();
+    res.json(category);
 };
 
 exports.updateCategory = async (req, res) => {
-
+    const {slug} = req.params;
+    const {name} = req.body;
+    try {
+        const updateCategory = Category.findOneAndUpdate({slug}, {name, slug: slugify(name)}, {new: true});
+        res.json(updateCategory);
+    } catch (err) {
+        res.status(400).send("Category Update Failed");
+    }
 };
 
 exports.removeCategory = async (req, res) => {
-
+    try {
+        const {slug} = req.params;
+        const deleteCategory = await Category.findOneAndDelete({slug});
+        res.json(deleteCategory);
+    } catch (err) {
+        res.status(400).send("Category Deletion Failed");
+    }
 };
 
 exports.listCategories = async (req, res) => {
-
+    const categories = await Category.find({}).sort({createdAt: -1}).exec();
+    res.json(categories);
 };
