@@ -6,7 +6,7 @@ const router = express.Router();
 const {authenticationCheck, adminCheck} = require('../middleware/authentication');
 
 router.post("/category", authenticationCheck, adminCheck, createCategory);
-router.get("/category/:slug", authenticationCheck, adminCheck, readCategory);
+router.get("/category/:slug", readCategory);
 router.put("/category/:slug", authenticationCheck, adminCheck, updateCategory);
 router.delete("/category/:slug", authenticationCheck, adminCheck, removeCategory);
 router.get("/categories", listCategories);

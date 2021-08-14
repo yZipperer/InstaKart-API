@@ -2,12 +2,12 @@ const Category = require('../models/category');
 const slugify = require('slugify');
 
 exports.createCategory = async (req, res) => {
-    try{
+    try {
         const {name} = req.body;
         const category = await new Category({name, slug: slugify(name)}).save();
         res.json(category);
     } catch (err) {
-        res.status(400).send("Category Creation Failed")
+        res.status(400).send("Category Creation Failed");
     }
 };
 
@@ -18,12 +18,13 @@ exports.readCategory = async (req, res) => {
 };
 
 exports.updateCategory = async (req, res) => {
-    const {slug} = req.params;
     const {name} = req.body;
+
     try {
-        const updateCategory = Category.findOneAndUpdate({slug}, {name, slug: slugify(name)}, {new: true});
-        res.json(updateCategory);
+        const updatedCategory = await Category.findOneAndUpdate({slug: req.params.slug}, {name, slug: slugify(name)}, {new: true});
+        res.json(updatedCategory);
     } catch (err) {
+        console.log(err);
         res.status(400).send("Category Update Failed");
     }
 };
