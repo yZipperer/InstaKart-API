@@ -40,6 +40,13 @@ exports.removeCategory = async (req, res) => {
 };
 
 exports.listCategories = async (req, res) => {
-    const categories = await Category.find({}).sort({createdAt: -1}).exec();
-    res.json(categories);
+    const {filter} = req.body;
+    
+    if(filter === "created"){
+        const categories = await Category.find({}).sort({createdAt: -1}).exec();
+        res.json(categories);
+    } else if(filter === "alphabet"){
+        const categories = await Category.find({}).sort({"name": 1}).exec();
+        res.json(categories);
+    }    
 };

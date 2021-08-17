@@ -9,6 +9,6 @@ router.post("/category", authenticationCheck, adminCheck, createCategory);
 router.get("/category/:slug", readCategory);
 router.put("/category/:slug", authenticationCheck, adminCheck, updateCategory);
 router.delete("/category/:slug", authenticationCheck, adminCheck, removeCategory);
-router.get("/categories", listCategories);
+router.post("/categories", listCategories);
 
 module.exports = router;
