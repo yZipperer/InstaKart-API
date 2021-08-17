@@ -40,6 +40,13 @@ exports.removeSubCategory = async (req, res) => {
 };
 
 exports.listSubCategories = async (req, res) => {
-    const subCategories = await SubCategory.find({}).sort({createdAt: -1}).exec();
-    res.json(subCategories);
+    const {filter} = req.body;
+    
+    if(filter === "created"){
+        const subCategories = await SubCategory.find({}).sort({createdAt: -1}).exec();
+        res.json(subCategories);
+    } else if(filter === "alphabet"){
+        const subCategories = await SubCategory.find({}).sort({"name": 1}).exec();
+        res.json(subCategories);
+    } 
 };
