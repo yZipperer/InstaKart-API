@@ -61,8 +61,12 @@ const productSchema = new mongoose.Schema({
         enum: ["Yes", "Local Pickup"]
     },
     brand: {
-        type: String,
-        enum: ["General Mills","Nestle","Ritz"]
+        type: ObjectId,
+        ref: "Brand"
+    },
+    subsidiaryBrand: {
+        type: ObjectId,
+        ref: "SubsidiaryBrand"
     },
     taxable: {
         type: Boolean,
