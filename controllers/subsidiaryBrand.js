@@ -1,52 +1,52 @@
-const SubsididaryBrand = require('../models/subsidiaryBrand');
+const SubsidiaryBrand = require('../models/subsidiaryBrand');
 const slugify = require('slugify');
 
-exports.createSubsididaryBrand = async (req, res) => {
+exports.createSubsidiaryBrand = async (req, res) => {
     try {
         const {name, parent} = req.body;
-        const subsididaryBrand = await new SubsididaryBrand({name, parent, slug: slugify(name)}).save();
-        res.json(subsididaryBrand);
+        const subsidiaryBrand = await new SubsidiaryBrand({name, parent, slug: slugify(name)}).save();
+        res.json(subsidiaryBrand);
     } catch (err) {
-        res.status(400).send("Subsididary Brand Creation Failed");
+        res.status(400).send("Subsidiary Brand Creation Failed");
     }
 };
 
-exports.readSubsididaryBrand = async (req, res) => {
+exports.readSubsidiaryBrand = async (req, res) => {
     const {slug} = req.params;
-    const subsididaryBrand = await SubsididaryBrand.findOne({slug}).exec();
-    res.json(subsididaryBrand);
+    const subsidiaryBrand = await SubsidiaryBrand.findOne({slug}).exec();
+    res.json(subsidiaryBrand);
 };
 
-exports.updateSubsididaryBrand = async (req, res) => {
+exports.updateSubsidiaryBrand = async (req, res) => {
     const {name, parent} = req.body;
 
     try {
-        const updatedSubsididaryBrand = await SubsididaryBrand.findOneAndUpdate({slug: req.params.slug}, {name, parent, slug: slugify(name)}, {new: true});
-        res.json(updatedSubsididaryBrand);
+        const updatedSubsidiaryBrand = await SubsidiaryBrand.findOneAndUpdate({slug: req.params.slug}, {name, parent, slug: slugify(name)}, {new: true});
+        res.json(updatedSubsidiaryBrand);
     } catch (err) {
         console.log(err);
-        res.status(400).send("Subsididary Brand Update Failed");
+        res.status(400).send("Subsidiary Brand Update Failed");
     }
 };
 
-exports.removeSubsididaryBrand = async (req, res) => {
+exports.removeSubsidiaryBrand = async (req, res) => {
     try {
         const {slug} = req.params;
-        const deleteSubsididaryBrand = await SubsididaryBrand.findOneAndDelete({slug});
-        res.json(deleteSubsididaryBrand);
+        const deleteSubsidiaryBrand = await SubsidiaryBrand.findOneAndDelete({slug});
+        res.json(deleteSubsidiaryBrand);
     } catch (err) {
-        res.status(400).send("Subsididary Brand Deletion Failed");
+        res.status(400).send("Subsidiary Brand Deletion Failed");
     }
 };
 
-exports.listSubsididaryBrand = async (req, res) => {
+exports.listSubsidiaryBrands = async (req, res) => {
     const {filter} = req.body;
     
     if(filter === "created"){
-        const subsididaryBrands = await SubsididaryBrand.find({}).sort({createdAt: -1}).exec();
-        res.json(subsididaryBrands);
+        const subsidiaryBrands = await SubsidiaryBrand.find({}).sort({createdAt: -1}).exec();
+        res.json(subsidiaryBrands);
     } else if(filter === "alphabet"){
-        const subsididaryBrands = await SubsididaryBrand.find({}).sort({"name": 1}).exec();
-        res.json(subsididaryBrands);
+        const subsidiaryBrands = await SubsidiaryBrand.find({}).sort({"name": 1}).exec();
+        res.json(subsidiaryBrands);
     } 
 };
