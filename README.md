@@ -8,22 +8,27 @@ This is the backend to [InstaKart-front](https://github.com/yZipperer/InstaKart-
 
 # Routes
 ```
-Post: http://localhost:8080/cUser                //creates new user
-Post: http://localhost:8080/currentUser          //gets current user
-Post: http://localhsot:8080/currentAdmin         //gets current admin
-Post: http://localhost:8080/brand                //creates new brand
-Get:  http://localhost:8080/brand/:slug          //gets specified brand
-Put:  http://localhost:8080/brand/:slug          //updates brand
-Delete: http://localhost:8080/brand/:slug        //deletes brand
-Post: http://localhost:8080/brands               //gets brands
-Post: http://localhost:8080/category             //creates new category
-Get:  http://localhost:8080/category/:slug       //gets category
-Put:  http://localhost:8080/category/:slug       //updates category
-Delete: http://localhost:8080/category/:slug     //deletes category
-Post: http://localhost:8080/categories           //gets categories
-Post: http://localhost:8080/subCategory          //creates new subcategory
-Get:  http://localhost:8080/subCategory/:slug    //gets subcategory
-Put:  http://localhost:8080/subCategory/:slug    //updates subcategory
-Delete: http://localhost:8080subCategory/:slug   //deletes subcategory
-Post: http://localhost:8080/subCategories        //gets subcategories
+Post: http://localhost:8080/cUser                   //creates new user
+Post: http://localhost:8080/currentUser             //gets current user
+Post: http://localhsot:8080/currentAdmin            //gets current admin
+Post: http://localhost:8080/brand                   //creates new brand
+Get:  http://localhost:8080/brand/:slug             //gets specified brand
+Put:  http://localhost:8080/brand/:slug             //updates brand
+Delete: http://localhost:8080/brand/:slug           //deletes brand
+Post: http://localhost:8080/brands                  //gets brands
+Post: http://localhost:8080/subsidiaryBrand         //creates subsidiary brand
+Get:  http://localhost:8080/subsidiaryBrand/:slug   //gets specific subsidiary brand
+Put:  http://localhost:8080/subsidiaryBrand/:slug   //updates subsidiary brand
+Delete: http://localhost:8080/subsidiaryBrand/:slug //deletes subsidiary brand
+Post: http://localhost:8080/subsidiaryBrands        //gets subsidiary brands
+Post: http://localhost:8080/category                //creates new category
+Get:  http://localhost:8080/category/:slug          //gets category
+Put:  http://localhost:8080/category/:slug          //updates category
+Delete: http://localhost:8080/category/:slug        //deletes category
+Post: http://localhost:8080/categories              //gets categories
+Post: http://localhost:8080/subCategory             //creates new subcategory
+Get:  http://localhost:8080/subCategory/:slug       //gets subcategory
+Put:  http://localhost:8080/subCategory/:slug       //updates subcategory
+Delete: http://localhost:8080subCategory/:slug      //deletes subcategory
+Post: http://localhost:8080/subCategories           //gets subcategories
 ```
