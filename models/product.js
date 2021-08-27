@@ -58,7 +58,7 @@ const productSchema = new mongoose.Schema({
     },
     shipping: {
         type: String,
-        enum: ["Yes", "Local Pickup"]
+        enum: ["Yes", "No"]
     },
     brand: {
         type: ObjectId,
@@ -72,8 +72,16 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    dimensions: {
-        type: String,
+    dimensionsWidth: {
+        type: Number,
+        req: true
+    },
+    dimensionsHeight: {
+        type: Number,
+        req: true
+    },
+    dimensionsDepth: {
+        type: Number,
         req: true
     },
     weight: {
