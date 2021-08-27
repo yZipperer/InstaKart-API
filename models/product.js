@@ -33,7 +33,7 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    category: {
+    /*category: {
         type: ObjectId,
         ref: "Category"
     },
@@ -42,7 +42,7 @@ const productSchema = new mongoose.Schema({
             type: ObjectId,
             ref: "SubCategory"
         }
-    ],
+    ],*/
     quantity: {
         type: Number,
         sold: {
@@ -60,27 +60,27 @@ const productSchema = new mongoose.Schema({
         type: String,
         enum: ["Yes", "No"]
     },
-    brand: {
+    /*brand: {
         type: ObjectId,
         ref: "Brand"
     },
     subsidiaryBrand: {
         type: ObjectId,
         ref: "SubsidiaryBrand"
-    },
+    },*/
     taxable: {
         type: Boolean,
         default: false
     },
-    dimensionsWidth: {
+    dimensionWidth: {
         type: Number,
         req: true
     },
-    dimensionsHeight: {
+    dimensionHeight: {
         type: Number,
         req: true
     },
-    dimensionsDepth: {
+    dimensionDepth: {
         type: Number,
         req: true
     },
