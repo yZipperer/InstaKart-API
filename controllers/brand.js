@@ -1,4 +1,5 @@
 const Brand = require('../models/brand');
+const SubsidiaryBrand = require('../models/subsidiaryBrand');
 const slugify = require('slugify');
 
 exports.createBrand = async (req, res) => {
@@ -49,4 +50,15 @@ exports.listBrands = async (req, res) => {
         const brands = await Brand.find({}).sort({"name": 1}).exec();
         res.json(brands);
     }    
+};
+
+exports.listSubsidiaryBrands = async (req, res) => {
+    SubsidiaryBrand.find({parent: req.params._id})
+    .exec((err, subsidiaryBrands) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(subsidiaryBrands);
+        }
+    })
 };

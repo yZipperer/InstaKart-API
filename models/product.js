@@ -37,12 +37,12 @@ const productSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Category"
     },
-    /*subCategories: [
+    subCategories: [
         {
             type: ObjectId,
             ref: "SubCategory"
         }
-    ],*/
+    ],
     quantity: {
         type: Number,
         sold: {
@@ -60,14 +60,14 @@ const productSchema = new mongoose.Schema({
         type: String,
         enum: ["Yes", "No"]
     },
-    /*brand: {
+    brand: {
         type: ObjectId,
         ref: "Brand"
     },
     subsidiaryBrand: {
         type: ObjectId,
         ref: "SubsidiaryBrand"
-    },*/
+    },
     taxable: {
         type: Boolean,
         default: false

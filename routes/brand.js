@@ -1,5 +1,6 @@
 const express = require('express');
 const {createBrand, readBrand, updateBrand, removeBrand, listBrands} = require('../controllers/brand');
+const {listSubsidiaryBrands} = require('../controllers/brand');
 
 const router = express.Router();
 
@@ -10,5 +11,6 @@ router.get("/brand/:slug", readBrand);
 router.put("/brand/:slug", authenticationCheck, adminCheck, updateBrand);
 router.delete("/brand/:slug", authenticationCheck, adminCheck, removeBrand);
 router.post("/brands", listBrands);
+router.get("/brand/subsidiaryBrands/:_id", listSubsidiaryBrands);
 
 module.exports = router;
