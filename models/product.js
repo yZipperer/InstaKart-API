@@ -33,11 +33,11 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    /*category: {
+    category: {
         type: ObjectId,
         ref: "Category"
     },
-    subCategories: [
+    /*subCategories: [
         {
             type: ObjectId,
             ref: "SubCategory"
@@ -72,15 +72,15 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    dimensionLength: {
+        type: Number,
+        req: true
+    },
     dimensionWidth: {
         type: Number,
         req: true
     },
     dimensionHeight: {
-        type: Number,
-        req: true
-    },
-    dimensionDepth: {
         type: Number,
         req: true
     },
