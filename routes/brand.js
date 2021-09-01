@@ -11,6 +11,6 @@ router.get("/brand/:slug", readBrand);
 router.put("/brand/:slug", authenticationCheck, adminCheck, updateBrand);
 router.delete("/brand/:slug", authenticationCheck, adminCheck, removeBrand);
 router.post("/brands", listBrands);
-router.get("/brand/subsidiaryBrands/:_id", listSubsidiaryBrands);
+router.get("/brand/subsidiarybrand/:_id", listSubsidiaryBrands);
 
 module.exports = router;

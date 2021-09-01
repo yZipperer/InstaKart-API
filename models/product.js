@@ -64,10 +64,12 @@ const productSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Brand"
     },
-    subsidiaryBrand: {
-        type: ObjectId,
-        ref: "SubsidiaryBrand"
-    },
+    subsidiaryBrands: [
+        {
+            type: ObjectId,
+            ref: "SubsidiaryBrand"
+        }
+    ],
     taxable: {
         type: Boolean,
         default: false
