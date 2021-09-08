@@ -104,6 +104,10 @@ const productSchema = new mongoose.Schema({
         trim: true,
         text: true
     },
+    seasonal: {
+        type: String,
+        enum: ["Winter", "Fall", "Spring", "Summer", "All"]
+    },
     slug: {
         type: String,
         unique: true,
