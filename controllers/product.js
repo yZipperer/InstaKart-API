@@ -25,3 +25,15 @@ exports.listProducts = async (req, res) => {
     .exec()
     res.json(products);
 };
+
+exports.listSeasonalProducts = async (req, res) => {
+    let seasonalProducts = await Product.find({})
+    .limit(req.params.season.toString())
+    .populate("category")
+    .populate("subCategories")
+    .populate("brand")
+    .populate("subsidiaryBrands")
+    .sort([["createdAt", "desc"]])
+    .exec()
+    res.json(seasonalProducts);
+};
