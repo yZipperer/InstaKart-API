@@ -37,3 +37,14 @@ exports.listSeasonalProducts = async (req, res) => {
     .exec()
     res.json(seasonalProducts);
 };
+
+exports.deleteProduct = async (req, res) => {
+    try {
+        const deletedProduct = await Product.findOneAndRemove({slug: req.params.slug})
+        .exec();
+        res.json(deletedProduct);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send("Product Deletion Failed");
+    }
+};
