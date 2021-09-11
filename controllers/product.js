@@ -48,3 +48,13 @@ exports.deleteProduct = async (req, res) => {
         return res.status(400).send("Product Deletion Failed");
     }
 };
+
+exports.individualProduct = async (req, res) => {
+    const product = await Product.findOne({slug: req.params.slug})
+        .populate("category")
+        .populate("subCategories")
+        .populate("brand")
+        .populate("subsidiaryBrands")
+        .exec();
+    res.json(product);
+}
