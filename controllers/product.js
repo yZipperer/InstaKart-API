@@ -72,7 +72,15 @@ exports.individualProduct = async (req, res) => {
         .populate("subsidiaryBrands")
         .exec();
     res.json(product);
-}
+};
+
+exports.individualProductUpdate = async (req, res) => {
+    const product = await Product.findOne({slug: req.params.slug})
+        .populate("category")
+        .populate("brand")
+        .exec();
+    res.json(product);
+};
 
 exports.listAllProducts = async (req, res) => {
     let products = await Product.find()

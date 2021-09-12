@@ -5,7 +5,8 @@ const {
     listSeasonalProducts,
     deleteProduct,
     individualProduct,
-    listAllProducts
+    listAllProducts,
+    individualProductUpdate
 } = require('../controllers/product');
 
 const router = express.Router();
@@ -18,5 +19,6 @@ router.get("/allproducts/:amount", authenticationCheck, adminCheck, listAllProdu
 router.get("/products/:season/:amount", listSeasonalProducts);
 router.delete("/product/:slug", authenticationCheck, adminCheck, deleteProduct);
 router.get("/product/:slug", individualProduct);
+router.get("/productupdate/:slug", authenticationCheck, adminCheck, individualProductUpdate);
 
 module.exports = router;
