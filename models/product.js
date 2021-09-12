@@ -106,7 +106,8 @@ const productSchema = new mongoose.Schema({
     },
     seasonal: {
         type: String,
-        enum: ["Winter", "Fall", "Spring", "Summer", "All"]
+        enum: ["Winter", "Fall", "Spring", "Summer", "All"],
+        default: "All"
     },
     slug: {
         type: String,

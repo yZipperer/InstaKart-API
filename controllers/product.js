@@ -14,8 +14,15 @@ exports.createProduct = async(req, res) => {
     }
 };
 
+/* -listProducts- lists all products
+    parameters:
+        amount: number
+
+    Also filters out any seasonal products and non-active products
+*/
+
 exports.listProducts = async (req, res) => {
-    let products = await Product.find({})
+    let products = await Product.find({"seasonal": "All", "active": true})
     .limit(parseInt(req.params.amount))
     .populate("category")
     .populate("subCategories")
@@ -26,9 +33,17 @@ exports.listProducts = async (req, res) => {
     res.json(products);
 };
 
+/* -listSeasonalProducts- lists products based on season
+    parmaters:
+        amount: number
+        season: "All", "Winter", "Spring", "Summer", "Fall"
+
+    also filters out any non-active products
+*/
+
 exports.listSeasonalProducts = async (req, res) => {
-    let seasonalProducts = await Product.find({})
-    .limit(req.params.season.toString())
+    let seasonalProducts = await Product.find({"seasonal": req.params.season.toString(), "active": true})
+    .limit(parseInt(req.params.amount))
     .populate("category")
     .populate("subCategories")
     .populate("brand")
@@ -58,3 +73,15 @@ exports.individualProduct = async (req, res) => {
         .exec();
     res.json(product);
 }
+
+exports.listAllProducts = async (req, res) => {
+    let products = await Product.find()
+    .limit(parseInt(req.params.amount))
+    .populate("category")
+    .populate("subCategories")
+    .populate("brand")
+    .populate("subsidiaryBrands")
+    .sort([["createdAt", "desc"]])
+    .exec()
+    res.json(products);
+};
