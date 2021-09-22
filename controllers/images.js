@@ -19,13 +19,10 @@ exports.upload = async (req, res) => {
 };
 
 exports.remove = (req, res) => {
-    const image_id = req.body.public_id;
+    let image_id = req.body.public_id;
 
-    cloudinary.uploader.destroy(image_id, (err, res) => {
-        if(err) {
-            return res.json({err});
-        } else {
-            res.send("Image has been removed");
-        }
+    cloudinary.uploader.destroy(image_id, (err, result) => {
+        if (err) return res.json({ success: false, err });
+        res.send("ok");
     });
 };
