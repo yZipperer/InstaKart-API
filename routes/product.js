@@ -6,7 +6,8 @@ const {
     deleteProduct,
     individualProduct,
     listAllProducts,
-    individualProductUpdate
+    individualProductUpdate,
+    updateProduct
 } = require('../controllers/product');
 
 const router = express.Router();
@@ -20,5 +21,6 @@ router.get("/products/:season/:amount", listSeasonalProducts);
 router.delete("/product/:slug", authenticationCheck, adminCheck, deleteProduct);
 router.get("/product/:slug", individualProduct);
 router.get("/productupdate/:slug", authenticationCheck, adminCheck, individualProductUpdate);
+router.put("/product/:slug", authenticationCheck, adminCheck, updateProduct);
 
 module.exports = router;
