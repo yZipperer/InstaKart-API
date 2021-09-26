@@ -82,6 +82,7 @@ exports.individualProductUpdate = async (req, res) => {
     res.json(product);
 };
 
+//admin ONLY
 exports.listAllProducts = async (req, res) => {
     let products = await Product.find()
     .limit(parseInt(req.params.amount))
@@ -104,6 +105,8 @@ exports.updateProduct = async (req, res) => {
         res.json(updatedProduct);
     } catch (err) {
         console.log("err");
-        return res.status(400).send("Product Update Failed");
+        res.status(400).json({
+            err: err.message
+        });
     }
 };
