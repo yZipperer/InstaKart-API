@@ -22,15 +22,36 @@ exports.createProduct = async(req, res) => {
 */
 
 exports.listProducts = async (req, res) => {
-    let products = await Product.find({"seasonal": "All", "active": true})
-    .limit(parseInt(req.params.amount))
-    .populate("category")
-    .populate("subCategories")
-    .populate("brand")
-    .populate("subsidiaryBrands")
-    .sort([["createdAt", "desc"]])
-    .exec()
-    res.json(products);
+    //target = createdAt || updatedAt
+    //order = desc || asc
+    try {
+        const {target, order, amount} = req.params;
+
+        if(target, order, amount) {
+            let products = await Product.find({"seasonal": "All", "active": true})
+            .limit(parseInt(req.params.amount))
+            .populate("category")
+            .populate("subCategories")
+            .populate("brand")
+            .populate("subsidiaryBrands")
+            .sort([[req.params.target, req.params.order]])
+            .exec()
+
+            res.json(products);
+        } else {
+            let products = await Product.find({"seasonal": "All", "active": true})
+            .limit(parseInt(req.params.amount))
+            .populate("category")
+            .populate("subCategories")
+            .populate("brand")
+            .populate("subsidiaryBrands")
+            .exec()
+
+            res.json(products);
+        }
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 /* -listSeasonalProducts- lists products based on season
