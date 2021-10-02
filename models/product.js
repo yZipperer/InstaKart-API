@@ -45,13 +45,13 @@ const productSchema = new mongoose.Schema({
     ],
     quantity: {
         type: Number,
-        sold: {
-            type: Number,
-            default: 0
-        }
     },
     suggestedQuantity: {
         type: Number,
+    },
+    sold: {
+        type: Number,
+        default: 0
     },
     images: {
         type: Array
