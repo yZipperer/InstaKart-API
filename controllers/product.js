@@ -1,5 +1,6 @@
 const Product = require("../models/product");
 const slugify = require("slugify");
+const cloudinary = require("cloudinary");
 
 exports.createProduct = async(req, res) => {
     try{
@@ -76,6 +77,22 @@ exports.listSeasonalProducts = async (req, res) => {
 
 exports.deleteProduct = async (req, res) => {
     try {
+        let product = await Product.findOne({slug: req.params.slug}).exec();
+
+        for(let i = 0; i < product.images.length; i++){
+            await cloudinary.uploader.destroy(product.images[i].public_id, (err, result) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
+        }
+
+        await cloudinary.uploader.destroy(product.mainImage[0].public_id, (err, result) => {
+            if (err) {
+                console.log(err);
+            }
+        });
+        
         const deletedProduct = await Product.findOneAndRemove({slug: req.params.slug})
         .exec();
         res.json(deletedProduct);

@@ -53,6 +53,9 @@ const productSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    mainImage: {
+        type: Array
+    },
     images: {
         type: Array
     },
@@ -88,6 +91,10 @@ const productSchema = new mongoose.Schema({
     },
     weight: {
         type: String,
+        req: true
+    },
+    shelfLife: {
+        type: Number,
         req: true
     },
     ratings: [
