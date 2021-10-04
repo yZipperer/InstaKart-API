@@ -148,3 +148,8 @@ exports.updateProduct = async (req, res) => {
         });
     }
 };
+
+exports.productStats = async (req, res) => {
+    let totalNumber = await Product.find({}).estimatedDocumentCount().exec();
+    res.json(totalNumber);
+};
