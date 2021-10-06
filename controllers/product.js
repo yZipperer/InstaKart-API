@@ -26,16 +26,19 @@ exports.listProducts = async (req, res) => {
     //target = createdAt || updatedAt
     //order = desc || asc
     try {
-        const {target, order, amount} = req.params;
+        const {target, order} = req.params;
+        const currentPage = req.query.pageNum || 1;
+        const productsPerPage = 6;
 
-        if(target, order, amount) {
+        if(target, order) {
             let products = await Product.find({"seasonal": "All", "active": true})
-            .limit(parseInt(req.params.amount))
+            .skip((currentPage - 1) * productsPerPage)
+            .limit(parseInt(productsPerPage))
             .populate("category")
             .populate("subCategories")
             .populate("brand")
             .populate("subsidiaryBrands")
-            .sort([[req.params.target, req.params.order]])
+            .sort([[target, order]])
             .exec()
 
             res.json(products);
