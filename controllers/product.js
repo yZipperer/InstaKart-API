@@ -106,12 +106,15 @@ exports.deleteProduct = async (req, res) => {
     }
 };
 
+//for users
+//will cut out certain information
 exports.individualProduct = async (req, res) => {
-    const product = await Product.findOne({slug: req.params.slug})
+    const product = await Product.findOne({slug: req.params.slug, "active": true})
         .populate("category")
         .populate("subCategories")
         .populate("brand")
         .populate("subsidiaryBrands")
+        .select("-pricePerUnit -suggestedQuantity -sold")
         .exec();
     res.json(product);
 };
