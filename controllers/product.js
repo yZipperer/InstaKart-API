@@ -28,13 +28,12 @@ exports.listProducts = async (req, res) => {
     try {
         const {target, order} = req.params;
         const currentPage = req.query.pageNum || 1;
-        console.log("================================", req.query.resPerPage);
         const productsPerPage = req.query.resPerPage || 4;
 
         if(target, order) {
             let products = await Product.find({"seasonal": "All", "active": true})
-            .skip((currentPage - 1) * productsPerPage)
-            .limit(productsPerPage)
+            .skip((currentPage - 1) * parseInt(productsPerPage))
+            .limit(parseInt(productsPerPage))
             .populate("category")
             .populate("subCategories")
             .populate("brand")
@@ -45,8 +44,8 @@ exports.listProducts = async (req, res) => {
             res.json(products);
         } else {
             let products = await Product.find({"seasonal": "All", "active": true})
-            .skip((currentPage - 1) * productsPerPage)
-            .limit(productsPerPage)
+            .skip((currentPage - 1) * parseInt(productsPerPage))
+            .limit(parseInt(productsPerPage))
             .populate("category")
             .populate("subCategories")
             .populate("brand")
