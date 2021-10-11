@@ -111,10 +111,72 @@ const productSchema = new mongoose.Schema({
         trim: true,
         text: true
     },
+    temperature: {
+        type: String,
+        trim: true,
+        text: true
+    },
     seasonal: {
         type: String,
         enum: ["Winter", "Fall", "Spring", "Summer", "All"],
         default: "All"
+    },
+    ingredients: {
+        type: String,
+        trim: true,
+        text: true
+    },
+    nutrition: {
+        servingsPerContainer: {
+            type: Number,
+            trim: true,
+            text: true
+        },
+        servingSize: {
+            type: String,
+            trim: true,
+            text: true
+        },
+        caloriesPerServing: {
+            type: Number,
+            trim: true,
+            text: true
+        },
+        totalFatPerServing: {
+            type: Number,
+            trim: true,
+            text: true
+        },
+        cholestrolPerServing: {
+            type: Number,
+            trim: true,
+            text: true
+        },
+        sodiumPerServing: {
+            type: Number,
+            trim: true,
+            text: true
+        },
+        totalCarbohydratesPerServing: {
+            type: Number,
+            trim: true,
+            text: true
+        },
+        dietaryFiberPerServing: {
+            type: Number,
+            trim: true,
+            text: true
+        },
+        totalSugarsPerServing: {
+            type: Number,
+            trim: true,
+            text: true
+        },
+        proteinPerServing: {
+            type: Number,
+            trim: true,
+            text: true
+        }
     },
     slug: {
         type: String,
