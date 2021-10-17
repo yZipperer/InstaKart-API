@@ -160,3 +160,34 @@ exports.productStats = async (req, res) => {
     let totalNumber = await Product.find({}).estimatedDocumentCount().exec();
     res.json(totalNumber);
 };
+
+//ratings
+exports.productRate = async (req, res) => {
+    const {stars, text} = req.body;
+    const product = await Product.findById(req.params.pID).exec();
+    const user = await User.findOne({email: req.user.email}).exec();
+    
+    //duplicate rating check
+    let exists = product.ratings.find((e) => {
+        e.author.toString() === user._id.toString();
+    });
+
+    if(exists === undefined) {
+        const newRating = await Product.findByIdAndUpdate(product._id, {
+            $push: {ratings: {
+                stars: stars,
+                text: text,
+                author: user._id
+            }}
+        }, {new: true}).exec();
+        res.json(rating);
+    } else {
+        const updatedRating = Product.updateOne({
+                ratings: {$elemMatch: exists},
+        }, 
+            {$set: {"ratings.$.stars": stars, "ratings.$.text": text}},
+            {new: trues}
+        ).exec();
+        res.json(updatedRating);
+    }
+};

@@ -99,7 +99,13 @@ const productSchema = new mongoose.Schema({
     },
     ratings: [
         {
-            stars: Number,
+            stars: {
+                type: Number,
+                req: true
+            },
+            text: {
+                type: String,
+            },
             author: {
                 type: ObjectId,
                 ref: "User"
