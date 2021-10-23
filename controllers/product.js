@@ -170,7 +170,7 @@ exports.productRate = async (req, res) => {
     
     //duplicate rating check
     let exists = product.ratings.find((e) => {
-        e.author.toString() === user._id.toString();
+        return e.author.toString() === user._id.toString();
     });
 
     if(exists === undefined) {
@@ -181,13 +181,13 @@ exports.productRate = async (req, res) => {
                 author: user._id
             }}
         }, {new: true}).exec();
-        res.json(rating);
+        res.json(newRating);
     } else {
         const updatedRating = Product.updateOne({
                 ratings: {$elemMatch: exists},
         }, 
             {$set: {"ratings.$.stars": stars, "ratings.$.text": text}},
-            {new: trues}
+            {new: true}
         ).exec();
         res.json(updatedRating);
     }
